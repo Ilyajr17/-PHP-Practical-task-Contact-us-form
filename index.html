@@ -1,0 +1,79 @@
+<html>
+  <head>
+    <meta charset = "utf-8">
+  </head>
+  
+  <body>
+    <form action = "index.php" method = "post">
+       <label>
+         Фамилия Имя Отчество
+      <input type = "text" name = "FullName" required>
+      </label>
+      
+      <br />
+      
+            <label>
+         Номер телеофна 
+      <input type = "text" name = "PhoneNumber" required>
+      </label>
+      
+                  <label>
+      Электронная почта 
+        <input type = "email" name = "Email" required>
+
+      </label>
+      
+
+
+   <p>
+     Предпочитаемый метод связи
+       <br/>
+     <label> Телефон    </label>
+       <input type="radio" name="question" value="phone" checked = "checked" >
+
+            <label> Электронная почта   </label>
+       <input type="radio" name="question" value="email">
+    </p>
+      
+        <p>
+           Пожалуйста, выберете тему сообщения
+          <br/>
+    <select>
+        <option>Выбрать</option>
+        <option>Отдел продаж</option>
+        <option>Отдел рекламы</option>
+        <option>Отдел маркетенга</option>
+    </select>
+         </p>
+        
+           
+                      <p>
+                        
+       Ваше сообщение
+                      <br />
+        <textarea rows="5" cols="100"> </textarea>
+    <p/>
+        
+        <p>Прикрпепить файл
+               <input name="myFile" type="file">
+        </p>
+      
+
+      
+            <input type = "submit" value = "Отправить">
+       <input type = "reset" value = "Очистить">
+        </form>
+    <form>
+      
+    <label>
+        <input type="checkbox">
+        Подтверждаю, что мне исполнилось 18 лет
+    </label>
+      
+</form>
+
+
+<hr/>
+
+  </body>
+</html>
