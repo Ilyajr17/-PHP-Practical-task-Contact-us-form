@@ -1,5 +1,10 @@
 <?php 
 
+
+ mail("izherebcov@gmail.com", "My Subject", "Hi");
+
+   
+
 $servername = "localhost";
 $username = "root";
 $password = "root";
@@ -16,11 +21,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $FullName = trim($_REQUEST['FullName']);
   $PhoneNumber = trim($_REQUEST['PhoneNumber']);
   $Email = trim($_REQUEST['Email']);
-
-
-  $conn->query(query:"INSERT INTO Feedback (FullName, PhoneNumber, Email) VALUES ('$FullName', '$PhoneNumber', '$Email')");
-
+  $commethod = $_REQUEST['commethod'];
+  $Message = $_REQUEST['Message'];
+  $file = $_REQUEST['file'];
+  $mes = $_REQUEST['mes'];
+  //$adult = $_REQUEST['adult'];
+  if (array_key_exists('adult', $_REQUEST)) {
+    $adult = true; 
   } else {
+    $adult = false;
+  }
+ 
+
+
+  $conn->query(query:"INSERT INTO Feedback (FullName, PhoneNumber, Email, commethod, Message, file, mes, adult) VALUES ('$FullName', '$PhoneNumber', '$Email', '$commethod', '$Message', '$file', '$mes', '$adult')");
+
+  } 
    $feedback = $conn->query(query:"SELECT * FROM Feedback");
 
 
@@ -28,23 +44,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $users[] = $result;
    }
   
-
-
    echo '<pre>';
-   print_r($users);
+   print_r($_REQUEST);
    echo '</pre>';
-
-
-
-  }
-
-
-
-
-//echo '<pre>';
-//print_r($_REQUEST);
-//echo '</pre>';
-
 
 
 
