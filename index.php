@@ -1,9 +1,6 @@
-<?php 
+<?php
 
 
- mail("izherebcov@gmail.com", "My Subject", "Hi");
-
-   
 
 $servername = "localhost";
 $username = "root";
@@ -13,10 +10,10 @@ $db = 'contactusform';
 $conn = mysqli_connect($servername, $username, $password, $db);
 
 if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-  }
-  
-if ($_SERVER['REQUEST_METHOD'] === 'POST') { 
+  die("Connection failed: " . mysqli_connect_error());
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   $FullName = trim($_REQUEST['FullName']);
   $PhoneNumber = trim($_REQUEST['PhoneNumber']);
@@ -27,29 +24,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $mes = $_REQUEST['mes'];
   //$adult = $_REQUEST['adult'];
   if (array_key_exists('adult', $_REQUEST)) {
-    $adult = true; 
+    $adult = true;
   } else {
     $adult = false;
   }
- 
-
-
-  $conn->query(query:"INSERT INTO Feedback (FullName, PhoneNumber, Email, commethod, Message, file, mes, adult) VALUES ('$FullName', '$PhoneNumber', '$Email', '$commethod', '$Message', '$file', '$mes', '$adult')");
-
-  } 
-   $feedback = $conn->query(query:"SELECT * FROM Feedback");
-
-
-   while($result = mysqli_fetch_array($feedback, MYSQLI_ASSOC)) {
-    $users[] = $result;
-   }
-  
-   echo '<pre>';
-   print_r($_REQUEST);
-   echo '</pre>';
 
 
 
-require 'index.html';
+  $conn->query(query: "INSERT INTO Feedback (FullName, PhoneNumber, Email, commethod, Message, file, mes, adult) VALUES ('$FullName', '$PhoneNumber', '$Email', '$commethod', '$Message', '$file', '$mes', '$adult')");
+}
+$feedback = $conn->query(query: "SELECT * FROM Feedback");
+
+
+
+
+
+
+
+while ($result = mysqli_fetch_array($feedback, MYSQLI_ASSOC)) {
+  $users[] = $result;
+}
+
+
+
+
+
+
+$mode = isset($_REQUEST['mode']) ?  $_REQUEST['mode'] : false;
+
+if ($mode === 'list') {
+  require 'list.html';
+} else {
+  require 'index.html';
+}
+
 
 exit;
